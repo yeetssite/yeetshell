@@ -1,0 +1,62 @@
+#!/data/data/com.termux/files/usr/bin/python
+# Copyright (c) 2024 Jacob "yeetsup" Haché.
+import time
+import os
+import random
+
+copyright = "Copyright (c) 2024 Jacob \"yeetsup\" Haché"
+version = float(1.0)
+releaseLevel = "Alpha"
+info = "Yeet shell, or \"yeetsh\" is an extension to the bourne shell(sh). Yeetsh is licensed under a GPL-3.0 License. Type \"help yeetsh\" for a list of yeetsh specific commands."
+help = "yeetsh commands\n"\
+       "============================\n"\
+       "help yeetsh Displays this message\n"\
+       "info        Displays info about yeetsh\n"\
+       "version     Prints the current version\n"\
+       "copyright   Prints the copyright notice\n"\
+       "exit        Exits yeetsh\n"\
+       "dice/roll   Picks a random number between 1-6"
+
+print("Welcome to yeetsh! Type \"help yeetsh\" for a list of commands.\nPlease note that changing primary directory(PWD) is not supported currently.")
+
+def shell(): # Continuous function
+   path = "[32m" + os.environ["PWD"] + "[34m$>[m"
+   command = input(path) # Shell prompt and commands
+   if command != "" or command != " ":
+    if command == "copyright":
+        print(copyright)
+    elif command == "version":
+        print(version, releaseLevel)
+    elif command == "exit":
+        exit()
+    elif "cd" in command:
+        print("Changing primary directories is currently not supported")
+    elif command == "help yeetsh":
+        print(help)
+    elif command == "info":
+        print(info)
+    elif "cls" in command:
+        os.system('clear')
+    elif command == "ll":
+        os.system('ls -l')
+    elif command == "lla":
+        os.system('ls -l -a')
+    elif command == "la":
+        os.system('ls -a')
+    elif command == "What":
+        print("where? WHEN??")
+    elif command == "yeetsh":
+        print("You are truly special")
+    elif command == "dice" or command == "roll":
+        diceFace = ["1","2","3","4","5","6"]
+        roll = random.choice(diceFace)
+        print("You rolled " + roll)
+    else:
+        os.system(command)
+   else:
+       shell()
+   shell()
+shell()
+
+
+   
